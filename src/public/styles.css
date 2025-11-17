@@ -1,0 +1,1016 @@
+/* Fuente TASA Orbiter para filas */
+@import url('https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400..800&display=swap');
+
+/* Estilos generales del body */
+body {
+  font-family: 'TASA Orbiter', Arial, sans-serif;
+  margin: 20px;
+  background-color: #acc9f0; /* azul claro de fondo */
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  color: #0e049bbd;
+  font-size: 42px; 
+}
+
+/* Solo aplica estos estilos si el body tiene la clase "inicio" */
+body.inicio {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #e0f7fa, #fffde7);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'TASA Orbiter', Arial, sans-serif;
+  text-align: center;
+}
+
+body.inicio h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+body.inicio p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+body.inicio .menu-principal {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+body.inicio .menu-principal button {
+  padding: 15px 30px;
+  font-size: 1rem;
+  font-family: 'TASA Orbiter', sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background-color: #0199b4;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+body.inicio .menu-principal button:hover {
+  background-color: #008fa1;
+  transform: scale(1.05);
+}
+
+@media (max-width: 500px) {
+  body.inicio .menu-principal {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+
+/* Contenedor principal del filtro */
+.filtro-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 1000px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Lado izquierdo (Insertar) */
+.filtro-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Lado derecho (Buscar) */
+.filtro-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Input de búsqueda */
+#filtroInput {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'TASA Orbiter', sans-serif;
+  width: 320px;
+  transition: border-color 0.3s ease;
+}
+
+#filtroInput:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Botones modernos */
+#btnFiltrar,
+#btnInsertarEmpleado {
+  padding: 6px 14px;
+  font-family: 'TASA Orbiter', sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#btnFiltrar {
+  background-color: #007BFF;
+  color: white;
+}
+
+#btnFiltrar:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+#btnInsertarEmpleado {
+  background-color: #28a745;
+  color: white;
+}
+
+#btnInsertarEmpleado:hover {
+  background-color: #1e7e34;
+  transform: scale(1.05);
+}
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .filtro-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtro-left,
+  .filtro-right {
+    justify-content: center;
+  }
+
+  #filtroInput {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+
+
+
+/* Estilos generales de la tabla */
+#empleadosTable {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  font-family: 'TASA Orbiter', sans-serif;
+}
+
+/* Encabezado como franja redondeada completa */
+#empleadosTable thead {
+  background-color: #014fb6;
+  color: #fff;
+  border-radius: 10px;
+  display: table-header-group;
+}
+
+#empleadosTable thead tr {
+  border-radius: 10px;
+}
+
+#empleadosTable th {
+  padding: 12px;
+  text-align: center;
+}
+
+/* Aplica los bordes redondeados al primer y último th */
+#empleadosTable th:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#empleadosTable th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Filas del cuerpo */
+#empleadosTable tbody tr {
+  background: linear-gradient(90deg, #fff9f0, #fff);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#empleadosTable tbody tr:hover {
+  transform: translateY(-3px); /* se levanta un poco */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Celdas */
+#empleadosTable td {
+  text-align: center;
+  padding: 12px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 18px;
+  color: #3b3b3b;
+}
+
+/* Responsive: Vista en pantallas pequeñas */
+@media screen and (max-width: 600px) {
+  #empleadosTable {
+    width: 95%;
+  }
+
+   /* Se oculta el encabezado */
+  #empleadosTable thead {
+    display: none;
+  }
+
+  /* Cada fila se muestra como bloque vertical */
+  #empleadosTable tbody tr {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+  }
+
+  /* Se muestra el nombre de la columna antes de cada celda */
+  #empleadosTable td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+    color: #0165e7;
+  }
+}
+
+
+
+/* Botón "Insertar" */
+#insertarBtn {
+  margin: 20px auto 0 10%; /* margen izquierdo del 10% */
+  display: block;
+  padding: 12px 24px;
+  background-color: #014fb6;
+  color: white;
+  font-family: 'TASA Orbiter', sans-serif;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#insertarBtn:hover {
+  background-color: #0165e7; /* azul más claro al pasar el cursor */
+  box-shadow: 0 8px 20px rgba(1, 101, 231, 0.5); /* efecto de brillo */
+}
+
+
+/* Modal base */
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4); /* Fondo oscuro transparente */
+}
+
+/* Contenedor del modal */
+.modal-contenido {
+  background-color: #fff8f0;
+  margin: 10% auto;
+  padding: 30px;
+  border: 2px solid #ff8c00;
+  width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Título del modal */
+.modal-contenido h2 {
+  font-family: 'TASA Orbiter', sans-serif;
+  text-align: center;
+  color: #ff7700;
+  margin-bottom: 25px;
+}
+
+/* Labels del formato*/
+.modal-contenido label {
+  font-family: 'TASA Orbiter', sans-serif;
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #e65c00;
+}
+
+/* Inputs */
+.modal-contenido input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+/* Botones Insertar y Regresar */
+.botones {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-modal {
+  background-color: #ff8c00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'TASA Orbiter', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-modal:hover {
+  background-color: #ffa94d;
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.6);
+}
+
+/* Mensajes de error debajo de inputs */
+.mensaje-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+/* Modal de éxito */
+#modalExito {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-exito-contenido {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  font-family: 'TASA Orbiter', sans-serif;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  animation: fadeIn 0.4s ease-in-out;      /* animación al aparecer */
+}
+
+.modal-exito-contenido h2 {
+  color: #28a745;         /* verde */
+  margin-bottom: 10px;
+}
+
+.modal-exito-contenido p {
+  font-size: 16px;
+  color: #333;
+}
+
+.modal-exito-contenido button {
+  margin-top: 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'TASA Orbiter', sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-exito-contenido button:hover {
+  background-color: #34d058;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+
+/* Modal de error */
+#modalError {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-error-contenido {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  font-family: 'TASA Orbiter', sans-serif;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.modal-error-contenido h2 {
+  color: #e53935;         /* rojo */
+  margin-bottom: 10px;
+}
+
+.modal-error-contenido p {
+  font-size: 16px;
+  color: #333;
+}
+
+.modal-error-contenido button {
+  margin-top: 15px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'TASA Orbiter', sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-error-contenido button:hover {
+  background-color: #ff6b6b;
+  box-shadow: 0 0 10px rgba(229, 57, 53, 0.5);
+}
+
+
+.acciones {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-accion {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 4px;
+  font-size: 18px;
+  transition: transform 0.1s ease;
+}
+
+.btn-accion:hover {
+  transform: scale(1.2);
+}
+
+.btn-accion:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 🔸 MODAL OVERLAY */
+#modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: none;
+}
+
+/* 🔸 MODAL CONTENEDOR */
+#modalActualizar {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: none;
+}
+
+/* 🔸 CONTENIDO MODAL */
+.modal-content {
+  background: #fffbe6;
+  border-radius: 12px;
+  padding: 25px 30px;
+  width: 400px;
+  border: 2px solid #e6b800;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+}
+
+/* 🔸 TÍTULO */
+.modal-content h2 {
+  color: #b38f00;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* 🔸 INPUTS */
+.modal-content label {
+  display: block;
+  margin: 12px 0 6px;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* 🔸 BOTONES */
+.modal-buttons {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.modal-buttons button {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* ACEPTAR */
+.modal-buttons button[type="submit"] {
+  background-color: #c28502;
+  color: white;
+  font-weight: bold;
+}
+
+.modal-buttons button[type="submit"]:hover {
+  background-color: #a97400;
+}
+
+/* CANCELAR */
+.modal-buttons button#cancelarBtn {
+  background-color: #f7ee9e;
+  color: #333;
+}
+
+.modal-buttons button#cancelarBtn:hover {
+  background-color: #f1e77d;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.85em;
+  display: block;
+  margin-top: 4px;
+}
+
+
+#notificationContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.notification {
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideIn 0.4s forwards, fadeOut 0.4s 3.6s forwards;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: default;
+  user-select: none;
+}
+
+.notification.success {
+  background-color: #28a745;
+}
+
+.notification.error {
+  background-color: #dc3545;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.modal-confirm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8d7da; /* rojo claro para advertencia */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4); /* sombra roja suave */
+  z-index: 1500;
+  max-width: 90%;
+  padding: 20px;
+  text-align: center;
+  border: none;
+
+}
+
+#modalConfirmMensaje {
+  font-size: 16px;
+  color: #721c24; /* rojo oscuro para texto */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Botones ajustados */
+#modalConfirmBtnYes, #modalConfirmBtnNo {
+  padding: 10px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 120px; /* más ancho */
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+  color: white;
+  margin: 0 5px 10px 5px; 
+}
+
+#modalConfirmBtnYes {
+  background-color: #dc3545; /* rojo fuerte */
+}
+
+#modalConfirmBtnYes:hover {
+  background-color: #b02a37; /* rojo oscuro hover */
+}
+
+#modalConfirmBtnNo {
+  background-color: #f5c6cb; /* rojo pastel */
+  color: #721c24; /* texto rojo oscuro */
+}
+
+#modalConfirmBtnNo:hover {
+  background-color: #d39da3;
+}
+
+
+
+/* Modal centrado */
+#modalInsertarMov.modal {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: auto !important;
+    height: auto !important;
+    transform: translate(-50%, -50%) !important;
+    background-color: transparent !important;
+    overflow: visible !important;
+}
+
+
+/* Contenedor del contenido del modal */
+#modalInsertarMov .modal-content {
+  width: 400px;
+  background-color: #e8d9f8;     /* Violeta claro */
+  border: 2px solid #5a2a83;     /* Violeta oscuro */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Botones */
+#formInsertarMov button {
+  font-size: 0.9em;
+  padding: 10px 20px;
+  margin: 5px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Botón Insertar */
+#formInsertarMov button[type="submit"] {
+  background-color: #6f42c1; /* Violeta medio */
+  color: white;
+}
+
+/* Botón Cancelar */
+#cancelarInsertarMov {
+  background-color: #8e44ad; /* Violeta oscuro */
+  color: white;
+}
+#formInsertarMov button:hover {
+  opacity: 0.9;
+  box-shadow: 0 0 10px rgba(111, 66, 193, 0.6);
+}
+
+
+/* Contenido del modal listar movimientos */
+/* 🔹 MODAL: LISTAR MOVIMIENTOS */
+#modalListarMov {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: none;
+  overflow-y: auto;
+}
+
+/* Contenido exclusivo del modal de movimientos */
+.modal-content-mov {
+  background-color: #082404; /* Verde olivo oscuro */
+  color: white;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Título grande y centrado */
+.modal-content-mov h3 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Tabla de movimientos */
+#tablaMovimientos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#tablaMovimientos th,
+#tablaMovimientos td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+#tablaMovimientos th {
+  background-color: #4f5c4b;
+  color: white;
+}
+
+/* Botones del footer del modal */
+#modalListarMov button {
+  padding: 12px 24px;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  font-weight: bold;
+}
+
+/* Insertar: violeta oscuro */
+#btnInsertarDesdeLista {
+  background-color: #5e4b8b;
+  color: white;
+}
+
+#btnInsertarDesdeLista:hover {
+  background-color: #4a3c70;
+}
+
+/* Cerrar: transparente con borde blanco */
+#btnCerrarListarMov {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+#btnCerrarListarMov:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Overlay activo */
+#modalOverlay.active {
+  display: block;
+}
+
+.modal-content-mov {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Fin modal listar movimientos */
+
+/* Estilos para modal INSERTAR EMPLEADO */
+/* Fondo semi-transparente del modal */
+.modal-insertar-empleado {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: none; /* <- esto se mantiene */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+
+/* Contenido modal */
+.modal-insertar-empleado__content {
+  background: #fff8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(255, 140, 0, 0.4);
+  padding: 2rem 3rem;
+  width: 420px;
+  max-width: 90%;
+  border: 3px solid #ff7300;
+
+  /* Centrado vertical con animación opcional */
+  margin: 5% auto;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Título */
+.modal-insertar-empleado__title {
+  margin-bottom: 1.2rem;
+  color: #97480b;
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(255, 140, 0, 0.6);
+}
+
+/* Formulario */
+.modal-insertar-empleado__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Grupos input-label-error */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group__label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #d35400;
+}
+
+/* Inputs y selects */
+.input-group__input,
+.input-group__select {
+  border: 2px solid #ffae42;
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font-size: 1rem;
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.input-group__input:focus,
+.input-group__select:focus {
+  border-color: #ff6f00;
+  box-shadow: 0 0 8px #ff6f00aa;
+}
+
+/* Mensajes de error */
+.input-group__error {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  height: 18px; /* espacio fijo para que no mueva layout */
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+/* Botones */
+.modal-insertar-empleado__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.7rem 1.6rem;
+  transition: background-color 0.25s ease;
+}
+
+.btn--primary {
+  background-color: #ff8c00;
+  color: white;
+  box-shadow: 0 3px 8px #ff8c00cc;
+}
+
+.btn--primary:hover {
+  background-color: #e67600;
+  box-shadow: 0 4px 12px #e67600cc;
+}
+
+.btn--secondary {
+  background-color: #fff3e0;
+  color: #ff8c00;
+  border: 2px solid #ff8c00;
+}
+
+.btn--secondary:hover {
+  background-color: #f7f0dd;
+}
+
+.input-error {
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 6px #e74c3caa !important;
+}
+
+/* Animación */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

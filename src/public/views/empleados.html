@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Empleados</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <h1>Gestión de Empleados</h1>
+
+  <!-- Sección de búsqueda -->
+  <div class="filtro-container">
+    <div class="filtro-left">
+      <button id="btnInsertarEmpleado">✍️ Insertar empleado nuevo</button>
+    </div>
+    <div class="filtro-right">
+      <input type="text" id="filtroInput" placeholder="Buscar por nombre o valor de identidad..." />
+      <button id="btnFiltrar">🔍 Buscar</button>
+    </div>
+  </div>
+
+
+  <!-- Tabla de empleados -->
+  <table id="empleadosTable">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Documento ID</th>
+        <th>Puesto</th>
+        <th>Fecha Contratación</th>
+        <th>Saldo Vacaciones</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Se llena dinámicamente -->
+    </tbody>
+  </table>
+
+  <!-- Overlay desenfocado -->
+  <div id="modalOverlay"></div>
+
+  <!-- Modal de actualización -->
+  <div id="modalActualizar">
+    <div class="modal-content">
+      <h2>Actualizar este empleado</h2>
+      <form id="formActualizar">
+      <label>Documento Identidad:
+        <input type="text" id="docInput" required />
+        <small id="docError" class="error-msg"></small>
+      </label>
+
+      <label>Nombre:
+        <input type="text" id="nombreInput" required />
+        <small id="nombreError" class="error-msg"></small>
+      </label>
+
+
+        <label>Puesto:</label>
+        <select id="puestoSelect" required></select>
+
+        <div class="modal-buttons">
+          <button type="submit">Actualizar</button>
+          <button type="button" id="cancelarBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="notificationContainer"></div>
+  <div id="modalConfirm" class="modal-confirm" style="display:none;">
+    <div class="modal-content" style="width: 300px; text-align:center; padding: 0;"> <!-- quitamos padding extra para no sumar -->
+      <p id="modalConfirmMensaje"></p>
+      <button id="modalConfirmBtnYes">Sí</button>
+      <button id="modalConfirmBtnNo">No</button>
+    </div>
+  </div>
+
+  <div id="modalInsertarMov" class="modal">
+    <div class="modal-content">
+      <h3>Insertar Movimiento</h3>
+
+      <p><strong>Documento:</strong> <span id="movDoc"></span></p>
+      <p><strong>Nombre:</strong> <span id="movNombre"></span></p>
+      <p><strong>Saldo Vacaciones:</strong> <span id="movSaldo"></span></p>
+
+      <form id="formInsertarMov">
+        <label for="tipoMovSelect">Tipo de Movimiento</label><br>
+        <select id="tipoMovSelect" required style="width: 100%; padding: 6px; margin-bottom: 12px;"></select><br>
+
+        <label for="montoInput">Monto</label><br>
+        <input type="number" id="montoInput" min="0.01" step="0.01" required style="width: 100%; padding: 6px; margin-bottom: 20px;" /><br>
+
+        <div style="text-align: center;">
+          <button type="submit" style="font-weight: bold; padding: 8px 20px; margin-right: 10px; background-color: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer;">Insertar</button>
+          <button type="button" id="cancelarInsertarMov" style="font-weight: bold; padding: 8px 20px; background-color: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer;">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalListarMov" class="modal">
+    <div class="modal-content-mov">
+      <h3>Movimientos del Empleado</h3>
+      <p><strong>Documento:</strong> <span id="listarMovDoc"></span></p>
+      <p><strong>Nombre:</strong> <span id="listarMovNombre"></span></p>
+      <p><strong>Saldo actual:</strong> <span id="listarMovSaldo"></span></p>
+
+      <table id="tablaMovimientos" style="width:100%; margin-top: 20px; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Monto</th>
+            <th>Nuevo Saldo</th>
+            <th>Usuario</th>
+            <th>IP</th>
+            <th>Estampa</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div style="margin-top: 20px; text-align: center;">
+        <button id="btnInsertarDesdeLista">➕ Insertar Movimiento</button>
+        <button id="btnCerrarListarMov">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Insertar Empleado -->
+<div id="modalInsertarEmpleado" class="modal-insertar-empleado" style="display:none;">
+  <div class="modal-insertar-empleado__content">
+    <h2 class="modal-insertar-empleado__title">Insertar nuevo empleado</h2>
+    <form id="formInsertarEmpleado" class="modal-insertar-empleado__form" novalidate>
+      <div class="input-group">
+        <label for="docInputInsertar" class="input-group__label">Documento Identidad:</label>
+        <input type="text" id="docInputInsertar" class="input-group__input doc-input" autocomplete="off" required />
+        <small id="docErrorInsertar" class="input-group__error"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="nombreInputInsertar" class="input-group__label">Nombre:</label>
+        <input type="text" id="nombreInputInsertar" class="input-group__input nombre-input" autocomplete="off" required />
+        <small id="nombreErrorInsertar" class="input-group__error"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="puestoSelectInsertar" class="input-group__label">Puesto:</label>
+        <select id="puestoSelectInsertar" class="input-group__select" required></select>
+      </div>
+
+      <div class="modal-insertar-empleado__buttons">
+        <button type="submit" class="btn btn--primary">Insertar</button>
+        <button type="button" id="cancelarInsertarBtn" class="btn btn--secondary">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="logout-container" style="text-align: right; margin-top: 20px;">
+  <button id="btnCerrarSesion" style="
+     padding: 10px 20px;
+     font-family: 'TASA Orbiter', sans-serif;
+     font-size: 16px;
+     font-weight: bold;
+     background-color: #79020e;
+     color: white;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+  ">
+    🔒 Cerrar Sesión
+  </button>
+</div>
+
+
+
+  <script src="../script.js"></script>
+</body>
+</html>
