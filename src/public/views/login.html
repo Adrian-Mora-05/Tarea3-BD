@@ -118,7 +118,7 @@
 
 
     try {
-      const res = await fetch('/empleados/login', {
+      const res = await fetch('/propiedades/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -131,7 +131,7 @@
       if (res.ok && data.resultCode === 0) {
         mostrarNotificacion("Iniciando sesión...", "success");
         // Redirigir a la aplicación principal
-        window.location.href = 'empleados.html';
+        window.location.href = 'propiedades.html';
       } else {
 
           if (data.resultCode === 50001) {

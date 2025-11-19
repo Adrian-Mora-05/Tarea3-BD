@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Portal web - Propiedades</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="propiedades-page">
+  <h1>Buscar propiedades</h1>
+  <!-- Sección de búsqueda -->
+  <div class="filtro-container">
+    <input type="text" id="filtroInput" placeholder="Ingrese número de finca o ID del propietario..." />
+    <div class="botones-busqueda">
+      <button id="btnBuscarFinca">🔍 Número de finca</button>
+      <button id="btnBuscarCedula">🔍 ID del propietario</button>
+    </div>
+    <small id="errorBusqueda" class="error-msg"></small>
+  </div>
+
+
+  <!-- Modal Propiedad -->
+  <div id="modalPropiedad" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Detalle de Propiedad</h2>
+      <div id="datosPropiedad">
+        <!-- Datos de la propiedad aquí -->
+      </div>
+
+      <h3>Facturas Pendientes</h3>
+      <table id="tablaFacturasPendientes">
+        <thead>
+          <tr>
+            <th>Fecha Factura</th>
+            <th>Vencimiento</th>
+            <th>Monto Original</th>
+            <th>Monto Final</th>
+            <th>Estado</th>
+            <th>Pagar</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h3>Facturas Pagadas</h3>
+      <table id="tablaFacturasPagadas">
+        <thead>
+          <tr>
+            <th>Fecha Factura</th>
+            <th>Vencimiento</th>
+            <th>Monto Original</th>
+            <th>Monto Final</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <button id="btnCerrarModalPropiedad">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Modal Propiedades por Cédula -->
+  <div id="modalPropiedadesCedula" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Propiedades del propietario</h2>
+      <table id="tablaPropiedadesCedula">
+        <thead>
+          <tr>
+            <th># Finca</th>
+            <th>Tipo Uso</th>
+            <th>Tipo Zona</th>
+            <th>Seleccionar</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button id="btnCerrarModalCedula">Cerrar</button>
+    </div>
+  </div>
+
+
+  <!-- Modal Confirmación de Pago -->
+  <div id="modalPago" class="modal" style="display:none;">
+    <div class="modal-content" style="text-align:center;">
+      <p>¿Desea pagar la factura seleccionada?</p>
+      <div class="botones-pago">
+        <button id="btnPagoEfectivo">Efectivo</button>
+        <button id="btnPagoTarjeta">Tarjeta</button>
+        <button id="btnCancelarPago">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="notificationContainer"></div>
+
+  <script src="../script.js"></script>
+</body>
+  <div class="logout-container" style="text-align: right; margin-top: 20px;">
+    <button id="btnCerrarSesion" style="
+      padding: 10px 20px;
+      font-family: 'TASA Orbiter', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #79020e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    ">
+      🔒 Cerrar Sesión
+    </button>
+  </div>
+</html>
