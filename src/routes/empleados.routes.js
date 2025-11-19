@@ -17,8 +17,7 @@ import {
 } from '../controllers/empleados.controllers.js';
 
 import {
-  hacerLogin,
-  hacerLogout
+  hacerLogin
 } from '../controllers/login.controllers.js';
 
 // Crea una instancia del enrutador
@@ -35,7 +34,7 @@ router.delete('/:ValorDocumentoIdentidad', borrarEmpleado);
 router.get('/:ValorDocumentoIdentidad/movimientos', listarMovimientos);
 router.post('/:valorDocumentoIdentidad/movimientos', insertarMovimiento);
 router.post('/login', hacerLogin);
-router.post('/logout', hacerLogout);
+
 
 
 

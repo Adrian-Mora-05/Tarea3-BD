@@ -19,9 +19,9 @@ export const getConnection = async () => {
 (async () => {
   try {
     const pool = await getConnection();
-    console.log('✅ Conectado correctamente a la BD:', pool.connected);
+    console.log('Conectado correctamente a la BD:', pool.connected);
   } catch (error) {
-    console.error('❌ Falló la conexión a la BD:', error);
+    console.error('Falló la conexión a la BD:', error);
   }
 })();
 

@@ -130,19 +130,10 @@
 
       if (res.ok && data.resultCode === 0) {
         mostrarNotificacion("Iniciando sesión...", "success");
-        sessionStorage.setItem('userId', data.userId); // asegúrate de que backend envíe userId
-        sessionStorage.setItem('userIP', data.userIP); // backend también
         // Redirigir a la aplicación principal
         window.location.href = 'empleados.html';
       } else {
-        if (data.bloquear) {
-          mostrarNotificacion("Demasiados intentos fallidos. Intente nuevamente en 10 minutos.", "error");
-            btnLogin.disabled = true;
-          setTimeout(() => {
-            btnLogin.disabled = false;
-          }, 10 * 60 * 1000);
 
-        } else {
           if (data.resultCode === 50001) {
             mostrarNotificacion("Usuario incorrecto.", "error");
           } else if (data.resultCode === 50002) {
@@ -150,7 +141,7 @@
           } else {
             mostrarNotificacion("Error al iniciar sesión.", "error");
           }
-        }
+        
       }
 
     } catch (err) {

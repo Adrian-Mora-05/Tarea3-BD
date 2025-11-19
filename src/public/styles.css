@@ -11,7 +11,7 @@ body {
 /* Título principal */
 h1 {
   text-align: center;
-  color: #0e049bbd;
+  color: #ffffff;
   font-size: 42px; 
 }
 
@@ -19,7 +19,7 @@ h1 {
 body.inicio {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #e0f7fa, #fffde7);
+  background: linear-gradient(to right, #005a75, #002544);
   height: 100vh;
   display: flex;
   flex-direction: column;
