@@ -4,6 +4,10 @@ import express from 'express';
 
 
 // Importa las funciones del controlador que manejarán las peticiones
+import {
+  buscarPorFinca,
+  buscarPorCedula
+} from '../controllers/propiedades.controllers.js';
 
 
 import {
@@ -16,7 +20,8 @@ const router = Router();
 // Definición de rutas para la entidad "Empleados"
 
 router.post('/login', hacerLogin);
-
+router.get('/finca/:numeroFinca', buscarPorFinca);
+router.get('/cedula/:cedula', buscarPorCedula);
 
 
 
