@@ -181,4 +181,15 @@ document.addEventListener("DOMContentLoaded", () => {
 };
 
 
+// Cerrar sesión → regresar a index.html
+const btnLogout = document.getElementById("btnCerrarSesion");
+if (btnLogout) {
+  btnLogout.addEventListener("click", () => {
+    window.location.href = "../index.html";
+  });
+}
+
+
+
+
 });
