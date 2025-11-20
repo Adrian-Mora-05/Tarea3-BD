@@ -1,5 +1,5 @@
 /* ============================================
-   1️⃣ FUENTES Y ESTILOS GLOBALES
+   1️ FUENTES Y ESTILOS GLOBALES
 ============================================ */
 @import url('https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400..800&display=swap');
 
@@ -33,7 +33,7 @@ button {
 }
 
 /* ============================================
-   2️⃣ ESTILOS PARA INDEX.HTML (PANTALLA INICIO)
+   2️ ESTILOS PARA INDEX.HTML (PANTALLA INICIO)
 ============================================ */
 body.inicio {
   margin: 0;
@@ -91,7 +91,7 @@ body.inicio .menu-principal button:hover {
 }
 
 /* ============================================
-   3️⃣ ESTILOS PARA LOGIN.HTML
+   3️ ESTILOS PARA LOGIN.HTML
 ============================================ */
 .login-container {
   width: 100%;
@@ -132,7 +132,7 @@ body.inicio .menu-principal button:hover {
 }
 
 /* ============================================
-   4️⃣ ESTILOS PARA PROPIEDADES.HTML
+   4 ESTILOS PARA PROPIEDADES.HTML
 ============================================ */
 /* ============================================
    ESTILOS PÁGINA PRINCIPAL - PORTAL DE PROPIEDADES
@@ -241,7 +241,7 @@ body.propiedades-page h1 {
 
 
 /* ============================================
-   5️⃣ MODALES (GENÉRICOS PARA CUALQUIER PÁGINA)
+   5 MODALES (GENÉRICOS PARA CUALQUIER PÁGINA)
 ============================================ */
 .modal {
   display: none; /* oculto por defecto */
@@ -281,7 +281,7 @@ body.propiedades-page h1 {
 }
 
 /* ============================================
-   6️⃣ NOTIFICACIONES GLOBALES
+   6 NOTIFICACIONES GLOBALES
 ============================================ */
 #notificationContainer {
   position: fixed;
@@ -313,3 +313,125 @@ body.propiedades-page h1 {
 
 @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
 @keyframes fadeOut { to { opacity: 0; transform: translateX(100%); } }
+
+
+/* ============================================
+   7 MODAL PARA BUSCAR PROPIEDADES X CÉDULA
+============================================ */
+/* ============================================
+   Modal Propiedades por Cédula (nuevo diseño)
+   ============================================ */
+.modal-cedula {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 30, 20, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInModal 0.25s ease-out;
+}
+
+.modal-cedula-content {
+  background: linear-gradient(to left, #014d01, #082404); 
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  width: 85%;
+  max-width: 900px;
+  color: #fff;
+  animation: scaleInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleInModal {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.titulo-modal-cedula {
+  text-align: center;
+  font-size: 1.9rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #dcead0;
+}
+
+.contenedor-cedula-flex {
+  display: flex;
+  flex-direction: row-reverse; 
+  gap: 25px;
+}
+
+/* Tabla */
+.tabla-propiedades-wrapper {
+  flex: 2;
+  overflow-y: auto;
+  max-height: 330px;
+}
+
+#tablaPropiedadesCedula {
+  width: 100%;
+  border-collapse: collapse;
+  background: #3e4c3e;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#tablaPropiedadesCedula th {
+  background: #4e5c4e;
+  padding: 12px;
+  font-weight: bold;
+  color: #e0f0e0;
+}
+
+#tablaPropiedadesCedula td {
+  padding: 12px;
+  border-bottom: 1px solid #556655;
+  cursor: pointer;
+}
+
+#tablaPropiedadesCedula tr:hover {
+  background: #617561;
+  transition: background 0.2s ease-in-out;
+}
+
+/* Datos del propietario */
+.datos-propietario-card {
+  text-align: left !important;
+  flex: 1;
+  background: #3a4a3a;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,.25);
+}
+
+.datos-propietario-card h3 {
+  margin-bottom: 10px;
+  color: #d6e8d6;
+}
+
+/* Botón cerrar */
+.btn-cedula-cerrar {
+  margin-top: 25px;
+  width: 15%;
+  display: inline-block;
+  padding: 14px;
+  font-size: 1.1rem;
+  background: #6b845f;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.btn-cedula-cerrar:hover {
+  background: #7fa270;
+  transform: translateY(-2px);
+}

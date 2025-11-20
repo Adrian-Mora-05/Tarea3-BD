@@ -129,23 +129,40 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   // LLENAR MODAL DE CÉDULA
   // ----------------------------
-  function abrirModalPropiedadesCedula(props) {
-    modalCedula.style.display = "block";
+function abrirModalPropiedadesCedula(props) {
+  modalCedula.style.display = "flex";
 
-    tablaPropsCedula.innerHTML = "";
+  tablaPropsCedula.innerHTML = "";
 
-    props.forEach(p => {
-      const row = `
-        <tr>
-          <td>${p.NumeroFinca}</td>
-          <td>${p.TipoUso}</td>
-          <td>${p.TipoZona}</td>
-          <td><button onclick="buscarPropiedadDesdeCedula('${p.NumeroFinca}')">Ver</button></td>
-        </tr>
-      `;
-      tablaPropsCedula.insertAdjacentHTML("beforeend", row);
-    });
+  if (props.length > 0) {
+    document.getElementById("propNombre").textContent = props[0].NombrePropietario;
+    document.getElementById("propCedula").textContent = props[0].Cedula;
+    document.getElementById("propEmail").textContent = props[0].Email;
+    document.getElementById("propTelefono").textContent = props[0].Telefono;
   }
+
+  props.forEach(p => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${p.NumeroFinca}</td>
+      <td>${p.NumeroMedidor}</td>
+      <td>${p.MetrosCuadrados}</td>
+      <td>${p.ValorFiscal}</td>
+      <td>${p.TipoUso}</td>
+      <td>${p.TipoZona}</td>
+    `;
+
+    // Si clickean una fila → abrir modal de propiedad
+    row.addEventListener("click", () => {
+      modalCedula.style.display = "none";
+      buscarPropiedadDesdeCedula(p.NumeroFinca);
+    });
+
+    tablaPropsCedula.appendChild(row);
+  });
+}
+
 
 
   // ----------------------------

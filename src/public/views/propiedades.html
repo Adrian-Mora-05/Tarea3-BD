@@ -60,23 +60,46 @@
   </div>
 
   <!-- Modal Propiedades por Cédula -->
-  <div id="modalPropiedadesCedula" class="modal" style="display:none;">
-    <div class="modal-content">
-      <h2>Propiedades del propietario</h2>
-      <table id="tablaPropiedadesCedula">
-        <thead>
-          <tr>
-            <th># Finca</th>
-            <th>Tipo Uso</th>
-            <th>Tipo Zona</th>
-            <th>Seleccionar</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table> 
-      <button id="btnCerrarModalCedula">Cerrar</button>
+<!-- Modal Propiedades por Cédula -->
+<div id="modalPropiedadesCedula" class="modal modal-cedula" style="display:none;">
+  <div class="modal-cedula-content">
+
+    <h2 class="titulo-modal-cedula">Propiedades del propietario</h2>
+
+    <div class="contenedor-cedula-flex">
+
+      <!-- TABLA DE PROPIEDADES -->
+      <div class="tabla-propiedades-wrapper">
+        <table id="tablaPropiedadesCedula">
+          <thead>
+            <tr>
+              <th># Finca</th>
+              <th># Medidor</th>
+              <th>m²</th>
+              <th>Valor Fiscal</th>
+              <th>Tipo Uso</th>
+              <th>Tipo Zona</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- DATOS DEL PROPIETARIO -->
+      <div class="datos-propietario-card">
+        <h3>Propietario</h3>
+        <p><strong>Nombre:</strong> <span id="propNombre"></span></p>
+        <p><strong>Cédula:</strong> <span id="propCedula"></span></p>
+        <p><strong>Email:</strong> <span id="propEmail"></span></p>
+        <p><strong>Teléfono:</strong> <span id="propTelefono"></span></p>
+      </div>
+
     </div>
+
+    <button id="btnCerrarModalCedula" class="btn-cedula-cerrar">Cerrar</button>
   </div>
+</div>
+
 
 
   <!-- Modal Confirmación de Pago -->

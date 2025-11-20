@@ -21,10 +21,10 @@ export const buscarPorFinca = async (req, res) => {
     if (outCode !== 0) {
       return res.json({
         success: false,
-        message: "No se encontró esta propiedad o hubo un error consultándola."
+        message: "No se encontró esta propiedad."
       });
     }
-
+ 
     // Este SP devuelve tres recordsets:
     //  0 = datos propiedad
     //  1 = facturas pendientes
