@@ -6,7 +6,8 @@ import express from 'express';
 // Importa las funciones del controlador que manejarán las peticiones
 import {
   buscarPorFinca,
-  buscarPorCedula
+  buscarPorCedula,
+  pagarFactura
 } from '../controllers/propiedades.controllers.js';
 
 
@@ -22,6 +23,7 @@ const router = Router();
 router.post('/login', hacerLogin);
 router.get('/finca/:numeroFinca', buscarPorFinca);
 router.get('/cedula/:cedula', buscarPorCedula);
+router.post('/pagarFactura', pagarFactura);
 
 
 

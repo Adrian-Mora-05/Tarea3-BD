@@ -83,3 +83,47 @@ export const buscarPorCedula = async (req, res) => {
     });
   }
 };
+
+
+export const pagarFactura = async (req, res) => {
+  try {
+    const {  numeroFinca, tipoPagoId, numeroReferencia, fechaPago } = req.body;
+
+  if (!numeroFinca || !tipoPagoId || !fechaPago) {
+    return res.status(400).json({ success: false, message: "Faltan parámetros obligatorios" });
+  }
+
+    const inputs = [
+      { name: 'inNumeroFinca', type: 'VarChar', length: 50, value: numeroFinca },
+      { name: 'inTipoMedioPagoId', type: 'Int', value: tipoPagoId },
+      { name: 'inNumeroReferencia', type: 'VarChar', length: 50, value: numeroReferencia || null },
+      { name: 'inFechaPago', type: 'Date', value: fechaPago }
+    ];
+
+    const outputs = [
+      { name: 'outResultCode', type: 'Int' }
+    ];
+
+    const result = await ejecutarSP('SP_PagarFactura', inputs, outputs);
+    const code = result.output.outResultCode;
+
+    const mensajes = {
+      0: { success: true, message: 'Factura pagada exitosamente' },
+      52001: { success: false, message: 'Número de finca inválido' },
+      52002: { success: false, message: 'Tipo de pago inválido' },
+      52003: { success: false, message: 'Propiedad no existe' },
+      52004: { success: false, message: 'Propiedad no tiene facturas pendientes' },
+      52008: { success: false, message: 'Error interno en la base de datos' }
+    };
+
+    res.status(200).json({
+      success: code === 0,
+      code,
+      message: mensajes[code]?.message || 'Error desconocido'
+    });
+
+  } catch (err) {
+    console.error('Error del servidor:', err);
+    res.status(500).json({ message: 'Error del servidor' });
+  }
+};
