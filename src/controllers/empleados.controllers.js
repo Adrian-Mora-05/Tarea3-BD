@@ -1,14 +1,12 @@
 // src/controllers/empleados.controllers.js
 import { ejecutarSP } from '../database/execSP.js';
 
-/**
- * GET /empleados/inicio
- */
 
+//Intenta primero ejecutar el SP principal
 export const listarInicioEmpleados = async (req, res) => {
   try {
     try {
-      // preferimos SP_ListarInicioEmpleado (si existe en tu BD)
+      // preferimos SP_ListarInicioEmpleado 
       const r = await ejecutarSP(
                                 'SP_ListarInicioEmpleado',
                                 [], // no hay parámetros de entrada
@@ -35,7 +33,7 @@ export const listarInicioEmpleados = async (req, res) => {
 }; 
 
 /**
- * GET /empleados
+ * 
  * Llama a SP_ListarEmpleados(@Filtro)
  * - Si llega nombre o documento, los pasamos como `Filtro` (SP implementa la lógica).
  * - Si no viene nada, se envía NULL y SP retorna todos (o se puede usar /inicio).
@@ -62,8 +60,6 @@ export const listarEmpleados = async (req, res) => {
 };
 
 /**
- * POST /empleados
- * Invoca SP_InsertarEmpleados
  * Espera en body: { ValorDocumentoIdentidad, Nombre, IdPuesto, FechaContratacion, SaldoVacaciones?, EsActivo? }
  * (SaldoVacaciones opcional -> por defecto 0, EsActivo por defecto 1)
  */
@@ -148,7 +144,6 @@ export const insertarEmpleado = async (req, res) => {
 };
 
 /**
- * PUT /empleados/:id
  * Invoca SP_ActualizarEmpleado
  * Se asume signature similar a SP_InsertarEmpleados + inId
  */
@@ -228,7 +223,6 @@ export const actualizarEmpleado = async (req, res) => {
 
 
 /**
- * DELETE /empleados/:id
  * Invoca SP_BorrarEmpleado (se asume signature inId, outResultCode)
  */
 export const borrarEmpleado = async (req, res) => {
@@ -261,7 +255,6 @@ export const borrarEmpleado = async (req, res) => {
 };
 
 /**
- * GET /empleados/:id/movimientos
  * Llama a SP_ListarMovimientos (se asume recibe inIdEmpleado)
  */
 export const listarMovimientos = async (req, res) => {
@@ -289,12 +282,8 @@ export const listarMovimientos = async (req, res) => {
 };  
 
 /**
- * POST /movimientos
  * Invoca SP_InsertarMovimiento
  */
-
-
-
 
 export const insertarMovimiento = async (req, res) => {
   try {

@@ -2,20 +2,21 @@ import { ejecutarSP } from '../database/execSP.js';
 
 // propiedades.controllers.js
 export const buscarPorFinca = async (req, res) => {
-  const { numeroFinca } = req.params;
+  const { numeroFinca } = req.params; // Obtiene el número de finca enviado por la ruta
+
 
   try {
     const result = await ejecutarSP(
-      "SP_ConsultarFacturasPropiedad",
+      "SP_ConsultarFacturasPropiedad", // Nombre del SP a ejecutar
       [
         { name: "inNumeroFinca", type: "NVarChar", value: numeroFinca, length: 50 }
       ],
       [
-        { name: "outResultCode", type: "Int" }
+        { name: "outResultCode", type: "Int" } // Código de salida
       ]
     );
 
-    const outCode = result.output?.outResultCode;
+    const outCode = result.output?.outResultCode; // Obtiene el código retornado por el SP
 
     // Si el SP indica error
     if (outCode !== 0) {
@@ -31,9 +32,9 @@ export const buscarPorFinca = async (req, res) => {
     //  2 = facturas pagadas
     return res.json({
       success: true,
-      propiedad: result.recordsets[0]?.[0] || null,
-      facturasPendientes: result.recordsets[1] || [],
-      facturasPagadas: result.recordsets[2] || []
+      propiedad: result.recordsets[0]?.[0] || null, // Primer registro de la primera lista
+      facturasPendientes: result.recordsets[1] || [], // Segunda lista
+      facturasPagadas: result.recordsets[2] || [] // Tercera lista
     });
 
   } catch (err) {
@@ -48,21 +49,22 @@ export const buscarPorFinca = async (req, res) => {
 
 // propiedades.controllers.js
 export const buscarPorCedula = async (req, res) => {
-  const { cedula } = req.params;
+  const { cedula } = req.params; // Obtiene la cédula por parámetros
 
   try {
     const result = await ejecutarSP(
-      "SP_ListarPropiedadesXCedula",
+      "SP_ListarPropiedadesXCedula", // Ejecuta el SP correspondiente
       [
-        { name: "inCedula", type: "NVarChar", value: cedula, length: 50 }
+        { name: "inCedula", type: "NVarChar", value: cedula, length: 50 } // Parámetro de entrada
       ],
       [
-        { name: "outResultCode", type: "Int" }
+        { name: "outResultCode", type: "Int" } // Código de salida
       ]
     );
 
-    const outCode = result.output?.outResultCode;
+    const outCode = result.output?.outResultCode; // Código devuelto
 
+    // Si el SP indica que no hay propiedades
     if (outCode !== 0) {
       return res.json({
         success: false,
@@ -72,7 +74,7 @@ export const buscarPorCedula = async (req, res) => {
 
     return res.json({
       success: true,
-      propiedades: result.recordset || [],
+      propiedades: result.recordset || [], // Lista de propiedades
     });
 
   } catch (err) {
@@ -89,10 +91,12 @@ export const pagarFactura = async (req, res) => {
   try {
     const {  numeroFinca, tipoPagoId, numeroReferencia, fechaPago } = req.body;
 
+    // Validación rápida de datos obligatorios
   if (!numeroFinca || !tipoPagoId || !fechaPago) {
     return res.status(400).json({ success: false, message: "Faltan parámetros obligatorios" });
   }
 
+   // Parámetros de entrada para el SP
     const inputs = [
       { name: 'inNumeroFinca', type: 'VarChar', length: 50, value: numeroFinca },
       { name: 'inTipoMedioPagoId', type: 'Int', value: tipoPagoId },
@@ -100,13 +104,15 @@ export const pagarFactura = async (req, res) => {
       { name: 'inFechaPago', type: 'Date', value: fechaPago }
     ];
 
+    // Parámetro de salida del SP
     const outputs = [
       { name: 'outResultCode', type: 'Int' }
     ];
 
-    const result = await ejecutarSP('SP_PagarFactura', inputs, outputs);
-    const code = result.output.outResultCode;
+    const result = await ejecutarSP('SP_PagarFactura', inputs, outputs); // Ejecuta el SP de pago
+    const code = result.output.outResultCode; // Código retornado por el SP
 
+    // Mensajes por cada código de resultado
     const mensajes = {
       0: { success: true, message: 'Factura pagada exitosamente' },
       52001: { success: false, message: 'Número de finca inválido' },
@@ -116,6 +122,7 @@ export const pagarFactura = async (req, res) => {
       52008: { success: false, message: 'Error interno en la base de datos' }
     };
 
+    // Respuesta final
     res.status(200).json({
       success: code === 0,
       code,
@@ -123,7 +130,7 @@ export const pagarFactura = async (req, res) => {
     });
 
   } catch (err) {
-    console.error('Error del servidor:', err);
+    console.error('Error del servidor:', err); // Error en servidorS
     res.status(500).json({ message: 'Error del servidor' });
   }
 };

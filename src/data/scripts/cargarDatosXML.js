@@ -18,7 +18,7 @@ const config = {
 };
 
 // ------------------------------
-// 🔵 FUNCIÓN GENÉRICA
+//  FUNCIÓN GENÉRICA
 // ------------------------------
 async function enviarXML(xmlPath, nombreSP) {
   try {
