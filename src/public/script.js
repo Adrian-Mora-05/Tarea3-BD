@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------------------
-  // Buscar por # de finca
+  // Buscar por numero de finca
   // ---------------------
   btnBuscarFinca.addEventListener("click", async () => {
     limpiarError();
@@ -200,7 +200,7 @@ function abrirModalPropiedadesCedula(props) {
       <td>${p.TipoZona}</td>
     `;
 
-    // Si clickean una fila → abrir modal de propiedad
+    // Si clickean una fila = abrir modal de propiedad
     row.addEventListener("click", () => {
       modalCedula.style.display = "none";
       buscarPropiedadDesdeCedula(p.NumeroFinca);
@@ -223,7 +223,6 @@ function abrirModalPropiedadesCedula(props) {
     modalCedula.style.display = "none";
   });
 
-  // ----------------------------
   // AL SELECCIONAR UNA PROPIEDAD DESDE EL MODAL DE CÉDULA
   // ----------------------------
   window.buscarPropiedadDesdeCedula = async (numeroFinca) => {
@@ -232,8 +231,6 @@ function abrirModalPropiedadesCedula(props) {
     btnBuscarFinca.click();
   };
 
-
-// ----------------------------
 // ABRIR MODAL DE PAGO
 // ----------------------------
 function cerrarModalPago() {
@@ -275,12 +272,12 @@ window.abrirModalPago = function(factura, numeroFinca) {
 };
 
 
-// Botón cancelar
+// Botón para cancelar
 document.getElementById("btnCancelarPago").addEventListener("click", () => {
   cerrarModalPago();
 });
 
-// Botón confirmar pago
+// Botón para confirmar pago
 document.getElementById("btnConfirmarPago").addEventListener("click", async () => {
   if (!facturaSeleccionada || !numeroFincaSeleccionada) return;
 
@@ -321,7 +318,6 @@ document.getElementById("btnConfirmarPago").addEventListener("click", async () =
     mostrarNotificacion("Error al pagar factura", "error");
   }
 });
-
 
 
 // Cerrar sesión → regresar a index.html
