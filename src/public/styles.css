@@ -6,7 +6,7 @@
 body {
   font-family: 'TASA Orbiter', Arial, sans-serif;
   margin: 20px;
-  background-color: #6d87ff; /* fondo por defecto */
+  background-color: #6d87ff; 
   color: #000;
 }
 
@@ -26,7 +26,7 @@ button {
 
 /* Mensajes de error globales */
 .mensaje-error, .error-msg {
-  color: red;
+  color: rgb(231, 60, 60);
   font-size: 0.85em;
   margin-top: 4px;
   display: block;
@@ -38,7 +38,7 @@ button {
 body.inicio {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #005a75, #002544);
+  background: linear-gradient(to right, #026c8c, #01213b);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ body.inicio {
 body.inicio h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  color: #fff;
+  color: #ffffffe0;
 }
 
 body.inicio p {
@@ -72,7 +72,7 @@ body.inicio .menu-principal button {
   font-weight: bold;
   border: none;
   border-radius: 12px;
-  background-color: #0199b4;
+  background-color: #08adca;
   color: white;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
@@ -188,7 +188,7 @@ body.propiedades-page h1 {
 
 .filtro-container input:focus {
   border-color: #064d80;
-  box-shadow: 0 0 8px rgba(6,77,128,0.4);
+  box-shadow: 0 0 8px rgba(9, 79, 130, 0.4);
 }
 
 /* Botones de búsqueda */
@@ -221,7 +221,7 @@ body.propiedades-page h1 {
 }
 
 #btnBuscarCedula {
-  background-color: #01725f;
+  background-color: #038973;
   color: white; 
 }
 
@@ -271,7 +271,7 @@ body.propiedades-page h1 {
 }
 
 .modal-error .modal-contenido {
-  border-left: 6px solid #dc3545;
+  border-left: 6px solid #f22237;
 }
 
 /* Animaciones */
@@ -308,7 +308,7 @@ body.propiedades-page h1 {
   user-select: none;
 }
 
-.notification.success { background-color: #28a745; }
+.notification.success { background-color: #2cce52; }
 .notification.error   { background-color: #dc3545; }
 
 @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
@@ -404,7 +404,7 @@ body.propiedades-page h1 {
   background: #3a4a3a;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,.25);
+  box-shadow: 0 0 10px rgba(11, 11, 11, 0.25);
 }
 
 .datos-propietario-card h3 {
@@ -500,7 +500,7 @@ body.propiedades-page h1 {
 
 /* === Datos de la propiedad === */
 .propiedad-info {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(195, 191, 191, 0.1);
   padding: 18px;
   border-radius: 12px;
   margin-bottom: 28px;
@@ -534,7 +534,7 @@ body.propiedades-page h1 {
 .tabla-facturas th {
   background: rgba(0,0,0,0.25);
   padding: 12px;
-  color: #ffe9a8;
+  color: #f3db93;
   font-size: 15px;
 }
 .tabla-facturas td {
